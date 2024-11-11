@@ -1,0 +1,98 @@
+body {
+    background-color: #000000;
+    color: #ffeeee;
+  
+    font-family: 'Ubuntu Mono', monospace;
+  }
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  
+  }
+  #wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #intro {
+    position: absolute;
+    top: 0vh;
+    left: 0vh;
+    width: 100vw;
+    height: 100vh;
+  
+    transition: all 42s;
+    opacity: 1.0;
+  }
+  
+  .work {
+    position: absolute;
+    top: 0vh;
+    left: 0vh;
+    width: 100vw;
+    height: 100vh;
+  
+    transition: transform 90s, opacity 90s;
+    transform:scale(0, 0);
+    opacity: 0.0;
+  }
+  
+  #about {
+    position: absolute;
+    top: 0vh;
+    left: 100%;
+    width: 100vw;
+    height: 100vh;
+  }
+  .back-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  #directives {
+    position: absolute;
+    width: 40vh;
+    top: 3vh;
+    left: 3vh;
+  
+    opacity: 0.0;
+    transition: opacity 120s;
+  }
+  #audio_cue {
+    position: absolute;
+    bottom: 3vh;
+    left: 3vh;
+  
+    opacity: 0.0;
+    transition: opacity 120s;
+  }
+  #visual_cue {
+    position: absolute;
+  
+    bottom: 3vh;
+    right: 3vh;
+  
+    opacity: 0.0;
+    transition: opacity 120s;
+  }
+  .boxed-info {
+    border: solid thick white;
+    background-color: #000000d0;
+    padding: 6px 6px 6px 6px;
+  }
+  .centered-text {
+    text-align: center;
+  }
+  .full-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

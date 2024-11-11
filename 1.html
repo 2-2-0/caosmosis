@@ -1,0 +1,227 @@
+<!--
+/*
+ * index.html
+ *
+ * Copyright 2022 Otono | Luis Clériga
+ * Coded by 220 <220@rene>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ *
+ *
+ */
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8" />
+  	<title>Caosmosis</title>
+
+  	<meta name="generator" content="Atom 1.54.0 x64" />
+  	<meta name="author" content="220" />
+
+  	<meta name="description" content="Caosmosis">
+
+  	<meta name="keywords" content="caosmosis,art,performance,sound,music,coaxial,festival" />
+
+  	<meta name="robots" content="index,follow" />
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<meta name="distribution" content="global" />
+
+  	<meta rel="canonical" href="https://caosmosis.2-2-0.online/" />
+
+
+  	<meta property="og:title" content="Caosmosis" />
+  	<meta property="og:description" content="Caosmosis description" />
+  	<meta property="og:image" content="https://caosmosis.2-2-0.online/images/thumbnail.jpg" />
+  	<meta property="og:url" content="https://caosmosis.2-2-0.online/" />
+  	<meta property="og:type" content="website" />
+
+  	<meta name="twitter_card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+  	<link rel="stylesheet" type="text/css" href="1/caosmosis.css" />
+
+    <script src="js/dwajax.js"></script>
+
+  	<script>
+      var visual_interval;
+      var visual_target = "workA";
+
+      var dom_wa;
+      var dom_wb;
+      var dom_ea;
+
+      var files_path = "assets/visual/";
+      var file_names = [
+        "1_1.mp4", "1_2.mp4", "1_3.mp4", "1_4.mp4", "1_5.mp4", "1_6.mp4", "1_7.mp4", "1_8.mp4", "1_9.mp4", "1_10.mp4", "1_11.mp4", "1_12.mp4",
+        "03small.mov", "04small.mov",
+        "dm3.mp4", "dm6.mp4", "dm7.mp4"];
+      var visual_artists = ["Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx", "Rampa_mx",
+                        "Zeta", "Zeta",
+                        "DM", "DM", "DM"];
+      var track_names = [
+        "01. Ana María Romano, 'El sol festivo' (Colombia)",
+        "02. Pitter Rocha,  'Fabulações Sonoras nº1' (Brasil)",
+        "03. Jorge David García, 'Hay una fisura que habla a murmullos' (México)",
+        "04. Alejandro Bernal, 'Pasar' (Colombia)",
+        "05. Rossana Uribe, 'Eoceno' (Colombia)",
+        "06. Árbol, 'La Línea (transición)' (Perú)",
+        "07. CEATUS, 'Sospó' (Chiapas, México)",
+        "08. Rossana Lara, 'Pneuma' (México)",
+        "09. Numb, 'Contracción / Expansión' (México)",
+        "10. 220, 'Liminal Audio Sculpture' (México)",
+        "11. Silent Zen ft. Edmeé García, 'Sueño Liminal'  (México)"
+      ];
+      var track_intervals = [
+        304,
+        351,
+        422,
+        715,
+        583,
+        241,
+        564,
+        402,
+        805,
+        399,
+        530,
+      ];
+      var track_texts = [
+      "Qué pasaría si...<br />compartimos nuestras respiraciones<br />dejamos que nos abrace lentamente ese sonido que extrañamos?<br />invocas un sonido que escucharás mañana?<br />liberas un sonido que haya hecho alguien y uno que hayas soñado?<br />sentimos el viento y olemos las manos?",
+      "1. Become aware of what you are hearing and expand further.<br />2. Enter a forest<br />3. Perceive the endless sound.<br />4. Listen to communications between beings. <br />5. Immerse yourself in the endless sound. ",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+      ];
+
+      var tracker = 0;
+
+
+      function openChaos () {
+        getContent ("audio_base", "1/audio_base.html");
+        let dom_i = document.getElementById ("intro");
+        let dom_ev = document.getElementById ("visual_cue");
+
+        dom_ea = document.getElementById ("audio_cue");
+
+        dom_wa = document.getElementById ("workA");
+        dom_wb = document.getElementById ("workB");
+
+        let dom_d = document.getElementById ("directives");
+
+        dom_i.style.transform = "scale(0, 0)";
+        dom_i.style.opacity = 0.0;
+
+        dom_wa.style.transform = "scale(1.3, 1.3)";
+        dom_wa.style.opacity = 1.0;
+
+        dom_wb.style.transform = "scale(1.3, 1.3)";
+        dom_wb.style.opacity = 0.0;
+
+        dom_ea.style.opacity = 1.0;
+        dom_ev.style.opacity = 1.0;
+
+        dom_d.style.opacity = 1.0;
+
+        changeVisual ();
+        changeTracker ();
+      }
+      function changeTracker () {
+        let name = track_names [tracker];
+
+        document.getElementById ("audio_cue").innerHTML = name;
+        document.getElementById ("directives").innerHTML = track_texts [tracker];
+        let m = track_intervals [tracker]*1000;
+        tracker++;
+        console.log (tracker);
+
+        if (tracker<track_names.length) setTimeout (changeTracker, m);
+        else location.reload ();
+      }
+
+      function setVisualTimer () {
+        visual_interval = setTimeout (changeVisual, 90000);
+      }
+      function changeVisual () {
+        let index = Math.floor (Math.random ()*file_names.length);
+        let file = file_names [index];
+        document.getElementById ("visual_cue").innerHTML = visual_artists  [index];
+
+        if (visual_target=="workA") {
+          dom_wa.style.opacity = 1.0;
+          dom_wb.style.opacity = 0.0;
+
+          document.getElementById ("back-video-a").src = files_path+file;
+        } else {
+          dom_wa.style.transitionDuration = "30s";
+          dom_wb.style.transitionDuration = "30s";
+          dom_wa.style.opacity = 0.0;
+          dom_wb.style.opacity = 1.0;
+
+          document.getElementById ("back-video-b").src = files_path+file;
+        }
+        visual_target = visual_target=="workA"?"workB":"workA";
+        setVisualTimer ();
+      }
+
+  	</script>
+
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <div id="intro">
+        <div class="full-center">
+          While you listen to the sounds of this station<br />
+        	Equalize your breathing to the audio output<br />
+          <br />
+        	Register in your hearing, at the same time,<br />
+          the external sounds, to the sounds of this place<br />
+          <br />
+          And send them with your breathing<br />
+          To whoever you listen through the registry<br />
+          of this audio station<br />
+          <br />
+          <br />
+          <div class="boxed-info centered-text">
+            <a href="javascript:;" onclick="openChaos ();">Enter CAOSMOSIS</A>
+          </div>
+        </div>
+      </div>
+      <div id="audio_base"></div>
+      <div id="workA" class="work">
+        <video autoplay muted loop class="back-video" id="back-video-a" width="100vw" height="100vh"></video>
+      </div>
+      <div id="workB" class="work">
+        <video autoplay muted loop class="back-video" id="back-video-b" width="100vw" height="100vh"></video>
+      </div>
+      <div id="directives"></div>
+      <div id="visual_cue" class="boxed-info"></div>
+      <div id="audio_cue" class="boxed-info"></div>
+      <div id="about"></div>
+    </div>
+  </body>
+  </html>
